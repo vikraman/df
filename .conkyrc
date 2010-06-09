@@ -78,7 +78,7 @@ ${voffset -4}${diskiograph_read sda 35,140 003300 6ddd00}${goto 156}${diskiograp
 ${voffset -45}${color2}Read: $color${diskio_read sda}${goto 156}${color2}Write: $color${diskio_write sda}
 ${voffset 10}${color1}${font Monaco:style=bold:size=10}Network$font${color3}${voffset 1}${hr 0}$color
 ${downspeedgraph eth0 75,123 003300 6ddd00}${alignr}${upspeedgraph eth0 75,123 330000 e3170d}$color
-${voffset -95}${color2}IP:$color ${addr eth0}    ${execi 300 getip}
+${voffset -95}${color2}IP:$color ${addr eth0}    ${texeci 300 getip}
 ${color2}Down:$color${goto 55}${downspeedf eth0} KiB/s${goto 156}${color2}Up:$color${goto 206}${upspeedf eth0} KiB/s
 ${color2}Total:$color${goto 55}${totaldown eth0}${goto 156}${color2}Total:$color${goto 206}${totalup eth0}
 ${color2}Today:${goto 55}$color${execi 300 vnstat -i eth0 | grep "today" | awk '{print $2 $3}'}${goto 156}${color2}Today:$color${goto 206}${execi 300 vnstat -i eth0 | grep "today" | awk '{print $5 $6}'}
