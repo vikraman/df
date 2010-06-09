@@ -1,12 +1,11 @@
--- {{{ License
+-- {{{ ~/.config/awesome/rc.lua
 --
--- Awesome configuration, using awesome 3.4.5 on Arch GNU/Linux
---   * Adrian C. <anrxc@sysphere.org>
-
--- Screenshot: http://sysphere.org/gallery/snapshots
-
--- This work is licensed under the Creative Commons Attribution-Share
--- Alike License: http://creativecommons.org/licenses/by-sa/3.0/
+-- vh4x0r's awesome configuration
+-- using awesome 3.4.5 on Gentoo GNU/Linux
+-- 
+-- Built from anrxc's awesome configuration
+-- Icons taken from zenburn theme by anrxc
+--
 -- }}}
 
 
@@ -66,8 +65,8 @@ end
    sexec("/usr/libexec/gnome-settings-daemon")
    sexec("xscreensaver -no-splash")
    sexec("blueman-applet")
-   sexec("conky")
    sexec("gnome-power-manager")
+   sexec("conky")
 -- }}}
 
 -- {{{ Wibox
@@ -79,11 +78,12 @@ separator = widget({ type = "imagebox" })
 separator.image = image(beautiful.widget_sep)
 -- }}}
 
--- {{{ CPU usage and temperature
+-- {{{ CPU usage, speed and temperature
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
 -- Initialize widgets
 cpugraph  = awful.widget.graph()
+cpuinf    = widget({ type = "textbox" })
 tzswidget = widget({ type = "textbox" })
 -- Graph properties
 cpugraph:set_width(40):set_height(17)
@@ -92,7 +92,8 @@ cpugraph:set_gradient_angle(0):set_gradient_colors({
    beautiful.fg_end_widget, beautiful.fg_center_widget, beautiful.fg_widget
 }) -- Register widgets
 vicious.register(cpugraph,  vicious.widgets.cpu,      "$1")
-vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone0")
+vicious.register(cpuinf,    vicious.widgets.cpuinf,  " ${cpu0 mhz} ", 17)
+vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone1")
 -- }}}
 
 -- {{{ Battery state
@@ -119,13 +120,19 @@ membar:set_gradient_colors({ beautiful.fg_widget,
 vicious.register(membar, vicious.widgets.mem, "$1", 13)
 -- }}}
 
--- {{{ File system usage
+-- {{{ File system usage and disk IO
 fsicon = widget({ type = "imagebox" })
 fsicon.image = image(beautiful.widget_fs)
 -- Initialize widgets
 fs = {
   r = awful.widget.progressbar(),
-  h = awful.widget.progressbar()
+  h = awful.widget.progressbar(),
+  p = awful.widget.progressbar(),
+  d = awful.widget.progressbar()
+}
+dio = {
+  r = awful.widget.progressbar(),
+  w = awful.widget.progressbar()
 }
 -- Progressbar properties
 for _, w in pairs(fs) do
@@ -139,11 +146,25 @@ for _, w in pairs(fs) do
   w.widget:buttons(awful.util.table.join(
     awful.button({ }, 1, function () exec("", false) end)
   ))
+end
+for _, w in pairs(dio) do
+  w:set_vertical(true):set_ticks(true)
+  w:set_height(17):set_width(5):set_ticks_size(2)
+  w:set_border_color(beautiful.border_widget)
+  w:set_background_color(beautiful.fg_off_widget)
+  w:set_gradient_colors({ beautiful.fg_widget,
+     beautiful.fg_center_widget, beautiful.fg_end_widget
+  })
 end -- Enable caching
 vicious.cache(vicious.widgets.fs)
+vicious.cache(vicious.widgets.dio)
 -- Register widgets
-vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",            599)
-vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}",        599)
+vicious.register(fs.r,  vicious.widgets.fs,  "${/ used_p}",                      599)
+vicious.register(fs.h,  vicious.widgets.fs,  "${/home used_p}",                  599)
+vicious.register(fs.p,  vicious.widgets.fs,  "${/usr/portage used_p}",           599)
+vicious.register(fs.d,  vicious.widgets.fs,  "${/usr/portage/distfiles used_p}", 599)
+vicious.register(dio.r, vicious.widgets.dio, "${read_s}",          7,          "sda")
+vicious.register(dio.w, vicious.widgets.dio, "${write_s}",         7,          "sda")
 -- }}}
 
 -- {{{ Network usage
@@ -289,10 +310,10 @@ for s = 1, screen.count() do
 --        separator, orgwidget,  orgicon,
 --        separator, mailwidget, mailicon,
         separator, upicon,     netwidget, dnicon,
-        separator, fs.h.widget, fs.r.widget, fsicon,
+        separator, dio.w.widget, dio.r. widget, fs.d.widget, fs.p.widget, fs.h.widget, fs.r.widget, fsicon,
         separator, membar.widget, memicon,
         separator, batwidget, baticon,
-        separator, tzswidget, cpugraph.widget, cpuicon,
+        separator, tzswidget, cpuinf, cpugraph.widget, cpuicon,
         separator, ["layout"] = awful.widget.layout.horizontal.rightleft
     }
 end
