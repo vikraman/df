@@ -1,0 +1,1 @@
+/etc/portage/savedconfig/x11-wm/dwm-5.7.2.h
