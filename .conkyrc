@@ -1,1 +1,86 @@
-/home/vh4x0r/.conkyrc
+## Conky
+background yes
+out_to_console no
+top_cpu_separate yes
+max_port_monitor_connections 256
+cpu_avg_samples 5
+net_avg_samples 5
+update_interval 1
+
+# Text	
+uppercase no
+override_utf8_locale yes
+#font Bitstream Charter:style=Regular
+# Causes my video/opengl appps to stutter
+use_xft yes
+xftfont Inconsolata:size=12
+
+# Window
+own_window yes
+own_window_class desktop
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_type override
+own_window_colour black
+
+# Graphics
+double_buffer yes
+draw_borders no
+draw_graph_borders no
+draw_shades yes
+draw_outline yes
+
+# Layout
+alignment middle_right
+gap_x 2
+gap_y 2
+maximum_width 300
+minimum_size 1000
+
+# Colors
+default_shade_color 000000
+default_outline_color 000000
+default_color ffffff
+color1 008FCC
+color2 b2b2b2
+color3 0000ff
+color7 00ff00
+color8 ffff00
+color9 ff0000
+
+# stuff after 'TEXT' will be formatted on screen
+
+TEXT
+${font Monaco:size=14}${time %H:%M:%S}${alignr}${time %a %b %d %Y}
+${font Monaco:size=12}${alignc}${kernel} - ${machine}
+${font Monaco:size=10}${color2}Hostname: $color${nodename}${goto 156}${color2}Uptime: $color${uptime}
+${color2}Battery: $color${battery BAT0}, ${acpiacadapter ADP1}
+${color1}${font Monaco:style=bold:size=10}Processor & Memory$font${color3}${voffset 1}${hr 0}$color
+${color2}CPU Freq:${color} ${freq_g}GHz ${goto 156}${color2}CPU Time: $color${cpu cpu0}%
+${voffset -4}${cpugraph cpu1 35,140 000033 3299cc}${goto 156}${cpugraph cpu2 35,140 000033 3299cc}$font
+${voffset -45}${color2}Core 0: $color${cpu cpu1}%${goto 156}${color2}Core 1: $color${cpu cpu2}%
+${voffset 10}${cpugraph cpu3 35,140 000033 3299cc}${goto 156}${cpugraph cpu4 35,140 000033 3299cc}$font
+${voffset -45}${color2}Core 2: $color${cpu cpu3}%${goto 156}${color2}Core 3: $color${cpu cpu4}%
+${voffset 10}${color2}RAM:  $color$mem${goto 156}$memmax${alignr}$memperc%
+${voffset -4}${membar 3,300}
+${color2}Swap: $color$swap${goto 156}$swapmax${alignr}$swapperc%
+${voffset -4}${swapbar 3,300}
+${color1}${font Monaco:style=bold:size=10}Top Processes$font${color3}${voffset 1}${hr 0}$color
+${voffset 3}${color2}${hr 0}
+${voffset -23}${color2}Name${goto 155}PID${goto 212}CPU%${goto 270}RAM%$color
+${top name 1}${goto 145}${top pid 1}${goto 200}${top cpu 1}${goto 255}${top mem 1}
+${top name 2}${goto 145}${top pid 2}${goto 200}${top cpu 2}${goto 255}${top mem 2}
+${top name 3}${goto 145}${top pid 3}${goto 200}${top cpu 3}${goto 255}${top mem 3}
+${color1}${font Monaco:style=bold:size=10}Disks$font${color3}${voffset 1}${hr 0}$color
+${color2}Drive Temp: $color${hddtemp} C${goto 156}${color2}Drive I/O: $color${diskio sda}
+${voffset -4}${diskiograph_read sda 35,140 003300 6ddd00}${goto 156}${diskiograph_write sda 35,140 330000 e3170d}$font
+${voffset -45}${color2}Read: $color${diskio_read sda}${goto 156}${color2}Write: $color${diskio_write sda}
+${voffset 10}${color1}${font Monaco:style=bold:size=10}Network$font${color3}${voffset 1}${hr 0}$color
+${downspeedgraph eth0 75,123 003300 6ddd00}${alignr}${upspeedgraph eth0 75,123 330000 e3170d}$color
+${voffset -95}${color2}IP:$color ${addr eth0}    ${execi 300 getip}
+${color2}Down:$color${goto 55}${downspeedf eth0} KiB/s${goto 156}${color2}Up:$color${goto 206}${upspeedf eth0} KiB/s
+${color2}Total:$color${goto 55}${totaldown eth0}${goto 156}${color2}Total:$color${goto 206}${totalup eth0}
+${color2}Today:${goto 55}$color${execi 300 vnstat -i eth0 | grep "today" | awk '{print $2 $3}'}${goto 156}${color2}Today:$color${goto 206}${execi 300 vnstat -i eth0 | grep "today" | awk '{print $5 $6}'}
+${color2}Week:${goto 55}$color${execi 300 vnstat -w -i eth0 | grep "current week" | awk '{print $3 $4}'}${goto 156}${color2}Week:$color${goto 206}${execi 300 vnstat -w -i eth0 | grep "current week" | awk '{print $6 $7}'}
+${color2}Month:$color${goto 55}${execi 300 vnstat -m -i eth0 | grep "`date +"%b '%y"`" | awk '{print $3 $4}'}${goto 156}${color2}Month:$color${goto 206}${execi 300 vnstat -m -i eth0 | grep "`date +"%b '%y"`" | awk '{print $6 $7}'}

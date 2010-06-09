@@ -1,1 +1,34 @@
-/home/vh4x0r/.Xdefaults
+
+XTerm*jumpScroll:               true
+XTerm*multiScroll:              true
+XTerm*boldColors:               false
+XTerm*boldMode:                 false
+XTerm*colorBD:                  MediumBlue
+XTerm*colorBDMode:              true
+XTerm*underLine:                true
+XTerm*colorUL:                  #1FA638
+XTerm*colorULMode:              true
+XTerm*scrollTtyOutput:		false
+XTerm*scrollKey:		true
+XTerm*highlightColor:           LightSkyBlue
+XTerm*cursorColor:              MediumBlue
+XTerm*pointerColor:             MediumBlue
+XTerm*internalBorder:           3
+XTerm*scrollBar:                true
+XTerm*rightScrollBar:           true
+XTerm*loginShell:               true
+XTerm*saveLines:                65535
+XTerm*charClass:                33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48,35:48,58:48
+
+URxvt*loginShell:		true
+URxvt*saveLines:		65535
+URxvt*depth:			32
+URxvt*background:		rgba:0000/0000/0000/dddd
+URxvt*foreground:		#FFFFFF
+URxvt*fading:			20
+URxvt*font:			xft:Inconsolata:style=Regular:pixelsize=14:antialias=true:hinting=true
+URxvt*cursorBlink:		true
+URxvt*urgentOnBell:		true
+URxvt*perl-ext-common:  	default,matcher,tabbed
+URxvt*urlLauncher:		firefox
+URxvt*matcher.button:		1

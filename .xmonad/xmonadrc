@@ -1,1 +1,21 @@
-/home/vh4x0r/.xmonad/xmonadrc
+#!/bin/sh
+#
+# Startup file for xmonad
+#
+# Set a backdrop
+Esetroot -scale ~/Pictures/twister_fractal_dark.png
+#
+# Set up trayer
+trayer --edge top --align right --SetDockType true --SetPartialStrut true \
+--expand true --transparent true --tint 0x404040 \
+--height 18 --widthtype pixel --width 66 &
+# Launch xmobar
+xmobar &
+# Fire up some apps
+urxvtd -o -f -q &
+xcompmgr &
+/usr/libexec/gnome-settings-daemon &
+xscreensaver -no-splash &
+conky &
+gnome-power-manager &
+blueman-applet &

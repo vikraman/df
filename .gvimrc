@@ -1,1 +1,1 @@
-/home/vh4x0r/.gvimrc
+highlight Normal guibg=black guifg=white
