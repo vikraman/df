@@ -1,4 +1,20 @@
+!-------------------------------!
+!              XFT              !
+!-------------------------------!
+Xft*dpi:			96
+Xft*antialias:			true
+Xft*hinting:			true
+Xft*hintstyle:			hintfull
+Xft*rgba:			rgb
 
+!-------------------------------!
+!            Xcursor            !
+!-------------------------------!
+Xcursor*theme:			Neutral_Plus
+
+!-------------------------------!
+!             XTerm             !
+!-------------------------------!
 XTerm*jumpScroll:               true
 XTerm*multiScroll:              true
 XTerm*boldColors:               false
@@ -20,15 +36,78 @@ XTerm*loginShell:               true
 XTerm*saveLines:                65535
 XTerm*charClass:                33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48,35:48,58:48
 
+!-------------------------------!
+!             Aterm             !
+!-------------------------------!
+Aterm*transparent:		true
+Aterm*tinting:			white
+Aterm*loginShell:		true
+Aterm*saveLines:		65535
+Aterm*scrollTtyOutput:		false
+Aterm*foreground:		white
+Aterm*background:		black
+Aterm*shading:			50
+Aterm*tintingType:		true
+
+!-------------------------------!
+!             URxvt             !
+!-------------------------------!
 URxvt*loginShell:		true
 URxvt*saveLines:		65535
 URxvt*depth:			32
-URxvt*background:		rgba:0000/0000/0000/dddd
-URxvt*foreground:		#FFFFFF
+URxvt*scrollBar:		false
+URxvt*scrollTtyOutput:		false
+URxvt*jumpScroll:		true
+URxvt*internalBorder:		6
+!URxvt*borderLess:		true
+URxvt*tabbed*new-button:	false
+URxvt*pointerBlank:		true
+URxvt*pointerBlankDelay:	5
 URxvt*fading:			20
-URxvt*font:			xft:Inconsolata:style=Regular:pixelsize=14:antialias=true:hinting=true
+URxvt*font:			xft:Monaco:style=Regular:pixelsize=14
 URxvt*cursorBlink:		true
 URxvt*urgentOnBell:		true
 URxvt*perl-ext-common:  	default,matcher,tabbed
 URxvt*urlLauncher:		firefox
 URxvt*matcher.button:		1
+! Colors
+URxvt*background:		rgba:0000/0000/0000/dddd
+URxvt*foreground:		#F2F2F2
+
+! Normal
+! color0    black
+! color1    red
+! color2    green
+! color3    yellow
+! color4    blue
+! color5    purple
+! color6    cyan
+! color7    white
+
+URxvt*color0:    #6c6c6c
+URxvt*color1:    #e9897c
+URxvt*color2:    #b6e77d
+URxvt*color3:    #ecebbe
+URxvt*color4:    #a9cdeb
+URxvt*color5:    #ea96eb
+URxvt*color6:    #c9caec
+URxvt*color7:    #f2f2f2
+
+! Light
+! color8    black
+! color9    red
+! color10   green
+! color11   yellow
+! color12   blue
+! color13   purple
+! color14   cyan
+! color15   white
+
+! URxvt*color8:    #747474
+! URxvt*color9:    #f99286
+! URxvt*color10:   #c3f786
+! URxvt*color11:   #fcfbcc
+! URxvt*color12:   #b6defb
+! URxvt*color13:   #fba1fb
+! URxvt*color14:   #d7d9fc
+! URxvt*color15:   #e2e2e2
