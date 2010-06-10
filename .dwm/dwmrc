@@ -2,7 +2,7 @@
 Esetroot -scale ~/Pictures/twister_fractal_dark.png &
 xcompmgr &
 conky &
-/usr/libexec/gnome-settings-daemon &
+#/usr/libexec/gnome-settings-daemon &
 urxvtd -q -o -f &
 #while true; do
 #  xsetroot -name "`date`"

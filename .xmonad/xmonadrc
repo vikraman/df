@@ -14,7 +14,7 @@ xmobar &
 # Fire up some apps
 urxvtd -o -f -q &
 xcompmgr &
-/usr/libexec/gnome-settings-daemon &
+#/usr/libexec/gnome-settings-daemon &
 xscreensaver -no-splash &
 conky &
 gnome-power-manager &

@@ -20,13 +20,16 @@ require("scratch")
 
 
 -- {{{ Variable definitions
-local altkey = "Mod1"
-local modkey = "Mod4"
+local altkey  = "Mod1"
+local modkey  = "Mod4"
 
-local term   = "urxvtc"
-local home   = os.getenv("HOME")
-local exec   = awful.util.spawn
-local sexec  = awful.util.spawn_with_shell
+local term    = "urxvtc"
+local editor  = "gvim"
+local browser = "firefox"
+local filemgr = "nautilus --no-desktop --browser"
+local home    = os.getenv("HOME")
+local exec    = awful.util.spawn
+local sexec   = awful.util.spawn_with_shell
 
 -- Beautiful theme
 beautiful.init(home .. "/.config/awesome/zenburn.lua")
@@ -62,7 +65,7 @@ end
 -- {{{ Startup apps
    sexec("urxvtd -o -f -q")
    sexec("xcompmgr")
-   sexec("/usr/libexec/gnome-settings-daemon")
+--   sexec("/usr/libexec/gnome-settings-daemon")
    sexec("xscreensaver -no-splash")
    sexec("blueman-applet")
    sexec("gnome-power-manager")
@@ -239,7 +242,7 @@ vicious.register(volbar,    vicious.widgets.volume,  "$1",  2, "Master")
 vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
 -- Register buttons
 volbar.widget:buttons(awful.util.table.join(
-   awful.button({ }, 1, function () exec("gnome-volume-control") end),
+   awful.button({ }, 1, function () exec("gnome-volume-control",      false) end),
    awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
    awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end)
 )) -- Register assigned buttons
@@ -341,19 +344,18 @@ clientbuttons = awful.util.table.join(
 -- {{{ Global keys
 globalkeys = awful.util.table.join(
     -- {{{ Applications
-    awful.key({ modkey }, "e", function () exec("gvim") end),
-    awful.key({ modkey }, "q", function () exec("nautilus --no-desktop --browser", false) end),
-    awful.key({ modkey }, "w", function () exec("firefox") end),
-    awful.key({ modkey }, "Return",  function () exec(term) end),
+    awful.key({ modkey }, "e", function () exec(editor, false) end),
+    awful.key({ modkey }, "q", function () exec(filemgr, false) end),
+    awful.key({ modkey }, "w", function () exec(browser, false) end),
+    awful.key({ modkey }, "Return",  function () exec(term, false) end),
     awful.key({ modkey }, "#49", function () scratch.drop(term, "bottom") end),
     -- }}}
 
-    -- Let gnome-settings-daemon handle these for now
     -- {{{ Multimedia keys
     -- awful.key({}, "#160", function () exec("xscreensaver-command -lock") end),
-    -- awful.key({}, "#121", function () exec("pvol.py -m") end),
-    -- awful.key({}, "#122", function () exec("pvol.py -p -c -2") end),
-    -- awful.key({}, "#123", function () exec("pvol.py -p -c 2")  end),
+    awful.key({}, "#121", function () exec("amixer -q set Master mute", false) end),
+    awful.key({}, "#122", function () exec("amixer -q set Master 2dB-", false) end),
+    awful.key({}, "#123", function () exec("amixer -q set Master 2dB+", false) end),
     -- awful.key({}, "#232", function () exec("plight.py -s") end),
     -- awful.key({}, "#233", function () exec("plight.py -s") end),
     -- awful.key({}, "#244", function () exec("sudo /usr/sbin/pm-hibernate") end),

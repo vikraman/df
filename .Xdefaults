@@ -10,7 +10,7 @@ Xft*rgba:			rgb
 !-------------------------------!
 !            Xcursor            !
 !-------------------------------!
-Xcursor*theme:			Neutral_Plus
+!Xcursor*theme:			Neutral_Plus
 
 !-------------------------------!
 !             XTerm             !
@@ -57,7 +57,7 @@ URxvt*saveLines:		65535
 URxvt*depth:			32
 URxvt*scrollBar:		false
 URxvt*scrollTtyOutput:		false
-URxvt*jumpScroll:		true
+!URxvt*jumpScroll:		true
 URxvt*internalBorder:		6
 !URxvt*borderLess:		true
 URxvt*tabbed*new-button:	false

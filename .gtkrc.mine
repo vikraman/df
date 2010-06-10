@@ -1,0 +1,31 @@
+##################
+#      GTK       #
+##################
+
+include "/usr/share/themes/Shiki-Brave/gtk-2.0/gtkrc"
+
+
+##################
+#     FONTS      #
+##################
+
+style "schrift"
+{
+font_name = "DejaVu Sans 10"
+}
+widget_class "*" style "schrift"
+gtk-font-name = "DejaVu Sans 10"
+
+
+##################
+#     ICONS      #
+##################
+
+gtk-icon-theme-name = "gnome-brave"
+
+
+##################
+#    TOOLBARS    #
+##################
+
+gtk-toolbar-style   = GTK_TOOLBAR_ICONS
