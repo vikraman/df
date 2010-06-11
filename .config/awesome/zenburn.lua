@@ -14,7 +14,7 @@ theme.wallpaper_cmd = { "awsetbg Pictures/twister_fractal_dark.png" }
 
 
 -- {{{ Styles
-theme.font      = "sans 8"
+theme.font      = "Verdana 8"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"

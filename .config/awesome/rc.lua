@@ -13,6 +13,7 @@
 require("awful")
 require("awful.rules")
 require("awful.autofocus")
+require("naughty")
 -- User libraries
 require("vicious")
 require("scratch")
@@ -33,6 +34,24 @@ local sexec   = awful.util.spawn_with_shell
 
 -- Beautiful theme
 beautiful.init(home .. "/.config/awesome/zenburn.lua")
+
+-- Naughty config
+naughty.config.timeout          = 5
+naughty.config.screen           = 1
+naughty.config.position         = "top_right"
+naughty.config.margin           = 4
+naughty.config.height           = 30
+naughty.config.width            = 400
+naughty.config.gap              = 1
+naughty.config.ontop            = true
+naughty.config.font             = beautiful.font
+naughty.config.icon             = nil
+naughty.config.icon_size        = 16
+naughty.config.fg               = beautiful.fg_focus
+naughty.config.bg               = beautiful.bg_focus
+naughty.config.border_width     = 1
+naughty.config.hover_timeout    = nil
+naughty.config.presets.normal.border_color = beautiful.border_focus
 
 -- Window management layouts
 layouts = {
