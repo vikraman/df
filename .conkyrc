@@ -1,5 +1,5 @@
 ## Conky
-background yes
+background no
 out_to_console no
 top_cpu_separate yes
 max_port_monitor_connections 256
@@ -13,7 +13,7 @@ override_utf8_locale yes
 #font Bitstream Charter:style=Regular
 # Causes my video/opengl appps to stutter
 use_xft yes
-xftfont Inconsolata:size=12
+xftfont Monaco:size=10
 
 # Window
 own_window yes

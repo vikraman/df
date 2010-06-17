@@ -108,7 +108,7 @@ cpugraph  = awful.widget.graph()
 cpuinf    = widget({ type = "textbox" })
 tzswidget = widget({ type = "textbox" })
 -- Graph properties
-cpugraph:set_width(40):set_height(17)
+cpugraph:set_width(40):set_height(20)
 cpugraph:set_background_color(beautiful.fg_off_widget)
 cpugraph:set_gradient_angle(0):set_gradient_colors({
    beautiful.fg_end_widget, beautiful.fg_center_widget, beautiful.fg_widget
@@ -124,7 +124,7 @@ baticon.image = image(beautiful.widget_bat)
 -- Initialize widget
 batwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%", 61, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "$1$3", 61, "BAT0")
 -- }}}
 
 -- {{{ Memory usage
@@ -134,7 +134,7 @@ memicon.image = image(beautiful.widget_mem)
 membar = awful.widget.progressbar()
 -- Pogressbar properties
 membar:set_vertical(true):set_ticks(true)
-membar:set_height(15):set_width(8):set_ticks_size(2)
+membar:set_height(18):set_width(8):set_ticks_size(2)
 membar:set_background_color(beautiful.fg_off_widget)
 membar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
@@ -159,7 +159,7 @@ dio = {
 -- Progressbar properties
 for _, w in pairs(fs) do
   w:set_vertical(true):set_ticks(true)
-  w:set_height(17):set_width(5):set_ticks_size(2)
+  w:set_height(20):set_width(5):set_ticks_size(2)
   w:set_border_color(beautiful.border_widget)
   w:set_background_color(beautiful.fg_off_widget)
   w:set_gradient_colors({ beautiful.fg_widget,
@@ -171,7 +171,7 @@ for _, w in pairs(fs) do
 end
 for _, w in pairs(dio) do
   w:set_vertical(true):set_ticks(true)
-  w:set_height(17):set_width(5):set_ticks_size(2)
+  w:set_height(20):set_width(5):set_ticks_size(2)
   w:set_border_color(beautiful.border_widget)
   w:set_background_color(beautiful.fg_off_widget)
   w:set_gradient_colors({ beautiful.fg_widget,
@@ -250,7 +250,7 @@ volbar    = awful.widget.progressbar()
 volwidget = widget({ type = "textbox" })
 -- Progressbar properties
 volbar:set_vertical(true):set_ticks(true)
-volbar:set_height(15):set_width(8):set_ticks_size(2)
+volbar:set_height(18):set_width(8):set_ticks_size(2)
 volbar:set_background_color(beautiful.fg_off_widget)
 volbar:set_gradient_colors({ beautiful.fg_widget,
    beautiful.fg_center_widget, beautiful.fg_end_widget
@@ -316,7 +316,7 @@ for s = 1, screen.count() do
     taglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, taglist.buttons)
     -- Create the wibox
     wibox[s] = awful.wibox({      screen = s,
-        fg = beautiful.fg_normal, height = 15,
+        fg = beautiful.fg_normal, height = 18,
         bg = beautiful.bg_normal, position = "top",
         border_color = beautiful.border_focus,
         border_width = beautiful.border_width
@@ -372,9 +372,9 @@ globalkeys = awful.util.table.join(
 
     -- {{{ Multimedia keys
     -- awful.key({}, "#160", function () exec("xscreensaver-command -lock") end),
-    awful.key({}, "#121", function () exec("amixer -q set Master mute", false) end),
-    awful.key({}, "#122", function () exec("amixer -q set Master 2dB-", false) end),
-    awful.key({}, "#123", function () exec("amixer -q set Master 2dB+", false) end),
+    awful.key({}, "#121", function () exec("amixer -q set Master toggle", false) end),
+    awful.key({}, "#122", function () exec("amixer -q set Master 2dB-",   false) end),
+    awful.key({}, "#123", function () exec("amixer -q set Master 2dB+",   false) end),
     -- awful.key({}, "#232", function () exec("plight.py -s") end),
     -- awful.key({}, "#233", function () exec("plight.py -s") end),
     -- awful.key({}, "#244", function () exec("sudo /usr/sbin/pm-hibernate") end),

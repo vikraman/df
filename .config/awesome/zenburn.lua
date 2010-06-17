@@ -8,13 +8,13 @@
 -- {{{ Main
 theme = {}
 theme.confdir       = awful.util.getdir("config")
-theme.wallpaper_cmd = { "awsetbg Pictures/twister_fractal_dark.png" }
+theme.wallpaper_cmd = { "awsetbg Pictures/Dropbacks/cosmos/comet.jpg" }
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
 -- }}}
 
 
 -- {{{ Styles
-theme.font      = "Verdana 8"
+theme.font      = "DejaVu Sans 9.5"
 
 -- {{{ Colors
 theme.fg_normal = "#DCDCCC"
