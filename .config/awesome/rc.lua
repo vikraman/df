@@ -100,12 +100,24 @@ separator = widget({ type = "imagebox" })
 separator.image = image(beautiful.widget_sep)
 -- }}}
 
+-- {{{ MPD status
+-- Initialize widget
+mpdwidget = widget({ type = "textbox" })
+-- Register widget
+vicious.register(mpdwidget, vicious.widgets.mpd,
+function (widget, args)
+  if args["{state}"] == "Stop" then return ""
+  else return args["{Artist}"]..' - '..args["{Title}"]
+  end
+end)
+-- }}}
+
 -- {{{ CPU usage, speed and temperature
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
 -- Initialize widgets
 cpugraph  = awful.widget.graph()
-cpuinf    = widget({ type = "textbox" })
+cpufreq   = widget({ type = "textbox" })
 tzswidget = widget({ type = "textbox" })
 -- Graph properties
 cpugraph:set_width(40):set_height(20)
@@ -113,8 +125,8 @@ cpugraph:set_background_color(beautiful.fg_off_widget)
 cpugraph:set_gradient_angle(0):set_gradient_colors({
    beautiful.fg_end_widget, beautiful.fg_center_widget, beautiful.fg_widget
 }) -- Register widgets
-vicious.register(cpugraph,  vicious.widgets.cpu,      "$1")
-vicious.register(cpuinf,    vicious.widgets.cpuinf,  " ${cpu0 mhz} ", 17)
+vicious.register(cpugraph,  vicious.widgets.cpu,     "$1")
+vicious.register(cpufreq,   vicious.widgets.cpufreq, " $5 $1MHz", 17, "cpu0")
 vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone1")
 -- }}}
 
@@ -124,7 +136,12 @@ baticon.image = image(beautiful.widget_bat)
 -- Initialize widget
 batwidget = widget({ type = "textbox" })
 -- Register widget
-vicious.register(batwidget, vicious.widgets.bat, "$1$3", 61, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat,
+function(widget, args)
+  if args[3] == "N/A" then return args[1]
+  else return args[1]..args[3]
+  end
+end, 61, "BAT0")
 -- }}}
 
 -- {{{ Memory usage
@@ -335,8 +352,9 @@ for s = 1, screen.count() do
         separator, dio.w.widget, dio.r. widget, fs.d.widget, fs.p.widget, fs.h.widget, fs.r.widget, fsicon,
         separator, membar.widget, memicon,
         separator, batwidget, baticon,
-        separator, tzswidget, cpuinf, cpugraph.widget, cpuicon,
-        separator, ["layout"] = awful.widget.layout.horizontal.rightleft
+        separator, tzswidget, cpufreq, cpugraph.widget, cpuicon,
+        separator, mpdwidget,
+	["layout"] = awful.widget.layout.horizontal.rightleft
     }
 end
 -- }}}
@@ -372,9 +390,12 @@ globalkeys = awful.util.table.join(
 
     -- {{{ Multimedia keys
     -- awful.key({}, "#160", function () exec("xscreensaver-command -lock") end),
-    awful.key({}, "#121", function () exec("amixer -q set Master toggle", false) end),
-    awful.key({}, "#122", function () exec("amixer -q set Master 2dB-",   false) end),
-    awful.key({}, "#123", function () exec("amixer -q set Master 2dB+",   false) end),
+    awful.key({},         "#121", function () exec("amixer -q set Master toggle", false) end),
+    awful.key({},         "#122", function () exec("amixer -q set Master 2dB-",   false) end),
+    awful.key({},         "#123", function () exec("amixer -q set Master 2dB+",   false) end),
+    awful.key({ modkey }, "#172", function () exec("mpc toggle",                  false) end),
+    awful.key({ modkey }, "#173", function () exec("mpc prev",                    false) end),
+    awful.key({ modkey }, "#171", function () exec("mpc next",                    false) end),
     -- awful.key({}, "#232", function () exec("plight.py -s") end),
     -- awful.key({}, "#233", function () exec("plight.py -s") end),
     -- awful.key({}, "#244", function () exec("sudo /usr/sbin/pm-hibernate") end),
