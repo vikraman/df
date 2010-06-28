@@ -101,6 +101,9 @@ function(widget, args)
   else return ' '..args["{Artist}"]..' - '..args["{Title}"]
   end
 end)
+mpdwidget:buttons(awful.util.table.join(
+awful.button({ }, 1, function () exec("mpc stop", false) end)
+))
 -- }}}
 --
 -- {{{ CPU widget
@@ -115,6 +118,9 @@ cpugraph:set_gradient_angle(0):set_gradient_colors({
 })
 vicious.register(cpugraph, vicious.widgets.cpu, "$1")
 vicious.register(cpufreq, vicious.widgets.cpufreq, "$5", 31, "cpu0")
+cpugraph.widget:buttons(awful.util.table.join(
+awful.button({ }, 1, function () exec("gnome-system-monitor", false) end)
+))
 -- }}}
 --
 -- {{{ RAM widget
@@ -127,6 +133,9 @@ memgraph:set_gradient_angle(0):set_gradient_colors({
   beautiful.fg_end_widget, beautiful.fg_center_widget, beautiful.fg_widget
 })
 vicious.register(memgraph, vicious.widgets.mem, "$1")
+memgraph.widget:buttons(awful.util.table.join(
+awful.button({ }, 1, function () exec("gnome-system-monitor", false) end)
+))
 -- }}}
 --
 -- {{{ Temperature widget
@@ -146,6 +155,9 @@ function(widget, args)
   else return args[1]..args[3]
   end
 end, 61, "BAT0")
+batwidget:buttons(awful.util.table.join(
+awful.button({ }, 1, function () exec("gnome-power-statistics", false) end)
+))
 -- }}}
 --
 -- {{{ Network widget
@@ -157,6 +169,9 @@ upicon.image = image(beautiful.widget_netup)
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
 .. beautiful.fg_netdn_widget ..'">${eth1 down_kb}</span> <span color="'
 .. beautiful.fg_netup_widget ..'">${eth1 up_kb}</span>', 3)
+netwidget:buttons(awful.util.table.join(
+awful.button({ }, 1, function () exec("gnome-system-monitor", false) end)
+))
 -- }}}
 --
 -- {{{ Date widget
