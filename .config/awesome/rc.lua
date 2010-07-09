@@ -168,7 +168,7 @@ dnicon.image = image(beautiful.widget_net)
 upicon.image = image(beautiful.widget_netup)
 vicious.register(netwidget, vicious.widgets.net, '<span color="'
 .. beautiful.fg_netdn_widget ..'">${eth1 down_kb}</span> <span color="'
-.. beautiful.fg_netup_widget ..'">${eth1 up_kb}</span>', 3)
+.. beautiful.fg_netup_widget ..'">${eth1 up_kb}</span>', 4)
 netwidget:buttons(awful.util.table.join(
 awful.button({ }, 1, function () exec("gnome-system-monitor", false) end)
 ))
@@ -425,6 +425,8 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Firefox" },
        properties = { tag = tags[1][2] } },
+    { rule = { class = "Pidgin" },
+       properties = { tag = tags[1][6] } },
     { rule = { class = "URxvt" },
       properties = { size_hints_honor = false } },
 }
