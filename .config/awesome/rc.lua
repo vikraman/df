@@ -57,7 +57,7 @@ layouts =
 -- {{{ Tags
 -- Define a tag table which holds all screen tags
 tags = {
-  name   = { "main", "web", "code", "mail", "irc", "im", "virt", "ssh", "media" },
+  name   = { "main", "web", "code", "file", "irc", "stuff", "virt", "ssh", "float" },
   layout = { layouts[3], layouts[2], layouts[4], layouts[12], layouts[6], layouts[7], layouts[10], layouts[12], layouts[1] }
 }
 for s = 1, screen.count() do
@@ -334,6 +334,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "#173",  function () exec("mpc prev",                    false) end),
     awful.key({ modkey,           }, "#171",  function () exec("mpc next",                    false) end),
 
+    -- Touchpad key
+    awful.key({                   }, "#200",  function () exec("touchpadToggle.sh",           false) end),
+
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
 
@@ -427,6 +430,8 @@ awful.rules.rules = {
        properties = { tag = tags[1][2] } },
     { rule = { class = "Pidgin" },
        properties = { tag = tags[1][6] } },
+    { rule = { class = "Skype" },
+      properties = { floating = true } },
     { rule = { class = "URxvt" },
       properties = { size_hints_honor = false } },
 }

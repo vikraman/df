@@ -123,11 +123,11 @@ alias -g .....='../../../..'
 # Prompts
 autoload -U promptinit
 promptinit
-prompt pws
+prompt clint
 
 # Display a startup message
 echo ""
-echo "Welcome back, $USER"
+echo "\033[01;32mWelcome back, \033[01;36m$USER\033[01;35m"
 hour=`date +%H`
 if [ $hour -lt 12 ]
 then
@@ -139,10 +139,13 @@ else
   echo "Good evening!"
 fi
 echo ""
-test -s /var/mail/$USER && echo "You have mail" || echo "No unread mail"
-echo ""
+#test -s /var/mail/$USER && echo "You have mail" || echo "No unread mail"
+mailcount=`find ~/Mail/Gmail/INBOX/new -type f | wc -l`
+test $mailcount -eq 0 && echo "\033[01;33mNo unread mail" || echo "\033[01;31mYou have mail"
+echo "\033[01;37m"
 fortune -a computers linux science gentoo-forums gentoo-dev perl tao kernelcookies
 echo ""
 
-# Set my $PATH
+# Set my $PATH and $PS1
 export PATH=".:$PATH:/usr/sbin:/sbin"
+export PS1="$PS1%B"

@@ -8,7 +8,7 @@
 -- {{{ Main
 theme = {}
 theme.confdir       = awful.util.getdir("config")
-theme.wallpaper_cmd = { "awsetbg /home/vh4x0r/Pictures/Dropbacks/Colorful.png" }
+theme.wallpaper_cmd = { "awsetbg /home/vh4x0r/Pictures/Dropbacks/Black.png" }
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/zenburn/zenburn-background.png" }
 -- }}}
 

@@ -4,10 +4,11 @@ out_to_console no
 top_cpu_separate yes
 max_port_monitor_connections 256
 cpu_avg_samples 5
-net_avg_samples 5
+diskio_avg_samples 5
+net_avg_samples 8
 update_interval 1
 
-# Text	
+# Text
 uppercase no
 override_utf8_locale yes
 #font Bitstream Charter:style=Regular
@@ -77,10 +78,10 @@ ${color2}Drive Temp: $color${hddtemp} C${goto 156}${color2}Drive I/O: $color${di
 ${voffset -4}${diskiograph_read sda 35,140 003300 6ddd00}${goto 156}${diskiograph_write sda 35,140 330000 e3170d}$font
 ${voffset -45}${color2}Read: $color${diskio_read sda}${goto 156}${color2}Write: $color${diskio_write sda}
 ${voffset 10}${color1}${font Monaco:style=bold:size=10}Network$font${color3}${voffset 1}${hr 0}$color
-${downspeedgraph eth0 75,123 003300 6ddd00}${alignr}${upspeedgraph eth0 75,123 330000 e3170d}$color
-${voffset -95}${color2}IP:$color ${addr eth0}${goto 156}${texeci 300 getip}
-${color2}Down:$color${goto 55}${downspeedf eth0} KiB/s${goto 156}${color2}Up:$color${goto 206}${upspeedf eth0} KiB/s
-${color2}Total:$color${goto 55}${totaldown eth0}${goto 156}${color2}Total:$color${goto 206}${totalup eth0}
-${color2}Today:${goto 55}$color${execi 300 vnstat -i eth0 | grep "today" | awk '{print $2 $3}'}${goto 156}${color2}Today:$color${goto 206}${execi 300 vnstat -i eth0 | grep "today" | awk '{print $5 $6}'}
-${color2}Week:${goto 55}$color${execi 300 vnstat -w -i eth0 | grep "current week" | awk '{print $3 $4}'}${goto 156}${color2}Week:$color${goto 206}${execi 300 vnstat -w -i eth0 | grep "current week" | awk '{print $6 $7}'}
-${color2}Month:$color${goto 55}${execi 300 vnstat -m -i eth0 | grep "`date +"%b '%y"`" | awk '{print $3 $4}'}${goto 156}${color2}Month:$color${goto 206}${execi 300 vnstat -m -i eth0 | grep "`date +"%b '%y"`" | awk '{print $6 $7}'}
+${downspeedgraph eth1 75,140 003300 6ddd00}${goto 156}${upspeedgraph eth1 75,140 330000 e3170d}$color
+${voffset -95}${color2}IP:$color ${addr eth1}   ${texeci 300 getip}
+${color2}Down:$color${goto 55}${downspeedf eth1} KiB/s${goto 156}${color2}Up:$color${goto 206}${upspeedf eth1} KiB/s
+${color2}Total:$color${goto 55}${totaldown eth1}${goto 156}${color2}Total:$color${goto 206}${totalup eth1}
+${color2}Today:${goto 55}$color${execi 300 vnstat -i eth1 | grep "today" | awk '{print $2 $3}'}${goto 156}${color2}Today:$color${goto 206}${execi 300 vnstat -i eth1 | grep "today" | awk '{print $5 $6}'}
+${color2}Week:${goto 55}$color${execi 300 vnstat -w -i eth1 | grep "current week" | awk '{print $3 $4}'}${goto 156}${color2}Week:$color${goto 206}${execi 300 vnstat -w -i eth1 | grep "current week" | awk '{print $6 $7}'}
+${color2}Month:$color${goto 55}${execi 300 vnstat -m -i eth1 | grep "`date +"%b '%y"`" | awk '{print $3 $4}'}${goto 156}${color2}Month:$color${goto 206}${execi 300 vnstat -m -i eth1 | grep "`date +"%b '%y"`" | awk '{print $6 $7}'}

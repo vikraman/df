@@ -66,7 +66,8 @@ URxvt*tabbed*new-button:	false
 URxvt*pointerBlank:		true
 URxvt*pointerBlankDelay:	5
 URxvt*fading:			20
-URxvt*font:			xft:Monaco:style=Regular:pixelsize=16
+URxvt*font:			xft:Monaco:style=Regular:pixelsize=12.5:antialias=true
+URxvt*intensityStyles:		true
 URxvt*cursorBlink:		true
 URxvt*urgentOnBell:		true
 URxvt*perl-ext-common:  	default,matcher,tabbed
@@ -86,14 +87,14 @@ URxvt*foreground:		#F2F2F2
 ! color6    cyan
 ! color7    white
 
-URxvt*color0:    #6c6c6c
-URxvt*color1:    #e9897c
-URxvt*color2:    #b6e77d
-URxvt*color3:    #ecebbe
-URxvt*color4:    #a9cdeb
-URxvt*color5:    #ea96eb
-URxvt*color6:    #c9caec
-URxvt*color7:    #f2f2f2
+! URxvt*color0:    #6c6c6c
+! URxvt*color1:    #e9897c
+! URxvt*color2:    #b6e77d
+! URxvt*color3:    #ecebbe
+! URxvt*color4:    #a9cdeb
+! URxvt*color5:    #ea96eb
+! URxvt*color6:    #c9caec
+! URxvt*color7:    #f2f2f2
 
 ! Light
 ! color8    black
